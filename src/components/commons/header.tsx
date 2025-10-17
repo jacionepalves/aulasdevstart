@@ -1,6 +1,6 @@
 import { assets } from "@/assets/assets";
 import { ShoppingCart, User } from "lucide-react";
-import ButtonCustom from "./button-custom";
+import ButtonCustom from "./ButtonCustom";
 
 export default function Header(){
     return (
