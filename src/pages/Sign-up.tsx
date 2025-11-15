@@ -1,6 +1,6 @@
 import ButtonNavigateHome from "@/components/commons/ButtonNavigateHome";
-import CardImage from "@/components/commons/CardImage";
-import CardTitleForm from "@/components/commons/CardTitleForm";
+import CardImage from "@/components/commons/card-image";
+import CardTitleForm from "@/components/commons/card-title-form";
 import NavigationLinkScreen from "@/components/commons/navigation-link-screen";
 import RegisterForm from "@/components/commons/RegisterForm";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";

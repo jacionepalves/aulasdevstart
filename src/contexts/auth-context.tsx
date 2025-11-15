@@ -6,8 +6,9 @@ import {
     ReactNode, 
     useState, 
     useEffect } from "react";
+import { redirect } from "react-router-dom";
 import { toast } from "sonner";
-import { set } from "zod";
+
 
 interface AuthProviderProps {
     children: ReactNode;
@@ -17,12 +18,15 @@ interface AuthContextData {
     user: User | null;
     signIn: (email: string, senha: string) => void;
     loading: boolean;
+    signOut?: () => void;
 }
 
 type User = {    
+    id: string;
+    name?: string;
     email: string;
     profile: string;
-}
+};
 
 export const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
@@ -50,6 +54,8 @@ export const AuthProvider : React.FC<AuthProviderProps> = ({children}) => {
         setTimeout(async () => {
             if(email === "user@user.com" && senha === "12345678") {
                 setUser({
+                    id:"1",
+                    name: "Usuário Padrão",
                     email,
                     profile: "user"
                 })
@@ -60,6 +66,8 @@ export const AuthProvider : React.FC<AuthProviderProps> = ({children}) => {
                 })        
                 );    
                 setLoading(false);
+
+                redirect("/perfil");
 
                 toast("Sucesso!!!",{
                     description: "Login realizado com sucesso!",
@@ -79,6 +87,18 @@ export const AuthProvider : React.FC<AuthProviderProps> = ({children}) => {
             }
         }, 2000);
     }
+    async function signOut() {
+        await clearStorage();
+        setUser(null);
+        toast("Sucesso!!!", {
+            description: "Logout realizado com sucesso",
+            duration: 5000,
+            position: "top-right",
+            icon: <Bell />,
+            style: { backgroundColor: "#4caf50", color: "#fff" },
+        });
+    }
+
 
     return (
         <AuthContext.Provider value={{ user, signIn, loading }}>{children}
@@ -94,4 +114,8 @@ export function useAuth() {
     }
 
     return context;
+}
+
+function clearStorage() {
+    throw new Error("Function not implemented.");
 }

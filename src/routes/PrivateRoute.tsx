@@ -1,5 +1,5 @@
-import { useAuth } from "../hooks/use-auth";
-import { JSX } from "react";
+import { useAuth } from "../contexts/auth-context";
+import type { JSX } from "react";
 import { Navigate } from "react-router-dom";
 
 interface PrivateRouteProps {

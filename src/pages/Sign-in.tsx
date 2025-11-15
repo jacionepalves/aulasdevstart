@@ -1,9 +1,9 @@
 import ButtonNavigateHome from "@/components/commons/ButtonNavigateHome";
-import CardImage from "@/components/commons/CardImage";
-import CardTitleForm from "@/components/commons/CardTitleForm";
+import CardImage from "@/components/commons/card-image";
+import CardTitleForm from "@/components/commons/card-title-form";
 import LoginSocial from "@/components/commons/Login/login-social";
 import NavigationLinkScreen from "@/components/commons/navigation-link-screen";
-import LoginForm from "@/components/landing_page/LoginForm";
+import LoginForm from "@/components/commons/login-form";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { useAuth } from "@/contexts/auth-context";
 import { Navigate } from "react-router-dom";
@@ -32,7 +32,7 @@ export default function SignIn(){
 
                         to="Não tem uma conta?"
                         text="Cadastre-se aqui" 
-                        path="/SignUp"/>
+                        path="/signup"/>
 
                     </CardContent>
 

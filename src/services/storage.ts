@@ -1,4 +1,4 @@
-export const storeData = async (key: string, value: string) => {
+export const storeData = async (key: string, value: any) => {
     try{
 
         const jsonValue = JSON.stringify(value);

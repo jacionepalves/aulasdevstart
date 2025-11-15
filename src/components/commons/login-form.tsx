@@ -1,4 +1,4 @@
-import { Button } from "../ui/button";
+
 import { Input } from "../ui/input";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
@@ -13,8 +13,10 @@ import {
 } from "../ui/form";
 import { useAuth } from "@/contexts/auth-context";
 import { useState } from "react";
+import { Eye, EyeOff, Link, Mail } from "lucide-react";
+import ButtonCustom from "./button-custom";
 
-const formSchema = z.object({
+const loginformSchema = z.object({
     email: z.string().email("Email inválido").nonempty("O email é obrigatório"),
     senha: z
     .string()
@@ -24,7 +26,7 @@ const formSchema = z.object({
 });
 export default function FormLogin(){
     const {signIn} = useAuth();
-    const [viewPassword, setViewPassword] = useState(false);
+    const [viewPassword, setViewPassword] = useState<boolean>(false);
     const form = useForm<z.infer <typeof loginformSchema>>({
         resolver: zodResolver(loginformSchema),
         defaultValues: {
@@ -33,11 +35,11 @@ export default function FormLogin(){
         },
     });
 
-    function toggleViewPasswordVisibility(){
+    function togglePasswordVisibility(){
         setViewPassword(!viewPassword);
     }
 
-    function onSubmit(data: z.infer<typeof formSchema>){
+    function onSubmit(data: z.infer<typeof loginformSchema>){
         const senha = data.senha.toString();
         const email = data.email.toString();
         signIn(email, senha);
@@ -47,15 +49,19 @@ export default function FormLogin(){
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="mt-4">
-                
+            {/*email*/}    
             <FormField
                 control={form.control}
                 name="email"
                 render={({ field, fieldState }) => (
-                    <FormItem >
+                    <FormItem className="mb-3">
                         <FormLabel>Email:</FormLabel>
                         <FormControl>
-                            <Input 
+                         <div className="relative">                        
+                            <span className="absolute left-0 top-2 pl-3 pointer-events-none">
+                                        <Mail className="w-5 h-5 text-gray-400" />
+                            </span>
+                         <Input 
                             type="email" 
                             placeholder="Digite seu email"
                             {...field} 
@@ -63,6 +69,9 @@ export default function FormLogin(){
                                 fieldState.error ? "border-red-500" : ""
                         }`}
                             />
+                            
+                        </div>   
+                            
                         </FormControl>
 
                         <FormMessage className="text-red-500">
@@ -71,22 +80,36 @@ export default function FormLogin(){
                     </FormItem>
              )}
             />
-
+            {/*senha*/}   
             <FormField
                 control={form.control}
                 name="senha"
                 render={({ field, fieldState }) => (
-                    <FormItem >
+                    <FormItem className="mb-3">
                         <FormLabel>Senha:</FormLabel>
+
                         <FormControl>
+                            <div className="relative">
+                            <span
+                                        className="absolute left-0 top-2 pl-3 z-20"
+                                        onClick={togglePasswordVisibility}
+                                    />
+                                    {viewPassword ? (
+                                    <Eye className="w-5 h-5 text-gray-400" />
+                                ) : (
+                                    <EyeOff className="w-5 h-5 text-gray-400" />
+                                )}
                             <Input 
-                            type="password" 
-                            placeholder="Digite sua senha"
+                            type={
+                            viewPassword ? "text" : "password"}    
+                            placeholder="Digite sua senha..."
                             {...field} 
-                            className={`w-full mt-2 mb-1 ${
+                            className={`w-full border-green-600/40 placeholder:text-gray-400 mb-1 
+                            pl-10  ${
                                 fieldState.error ? "border-red-500" : ""
                         }`}
                             />
+                            </div>
                         </FormControl>
 
                         <FormMessage className="text-red-500">
@@ -95,15 +118,29 @@ export default function FormLogin(){
                     </FormItem>
              )}
             />
+            <div className="flex flex-row items-center justify-between mb-4">
+                    <label className="text-sm">
+                        <input type="checkbox" className="mr-2" />
+                        Lembrar de mim
+                    </label>
 
-                <div className="mt-4 w-full">            
-                <Button 
-                    className="w-full font-bold uppercase"
-                    type="submit"             
+                    <Link
+                        to="/forgot-password"
+                        className="text-sm text-green-500 hover:text-green-700"
                     >
-                        Entrar
-                </Button>
+                        Esqueci minha senha
+                    </Link>
                 </div>
+
+                <div>
+                    <ButtonCustom
+                        title="Entrar"
+                        width="w-full"
+                        variant="gradient"
+                        alignment="justify-center"
+                    />
+                </div>                   
+                
             </form>
         </Form>
     );
