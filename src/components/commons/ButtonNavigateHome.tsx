@@ -1,22 +1,13 @@
-type ButtonCustomProps = {
-    title: string;
-    color: string;
-    border?:string | undefined;
-    width?: string | undefined;
-};
+import { Button } from "../ui/button";
 
-export default function ButtonNavigateHome({
-    title, 
-    color, 
-    border,
-    width
-}:  ButtonCustomProps){
-    return(
-        <button 
-        className={`${color} text-white font-bold py-2 px-4 rounded ${border} 
-        hover:opacity-70 transition duration-600 ease-in-out cursor-pointer ${width}`}
+export default function ButtonNavigateHome() {
+    return (
+        <Button
+            className="hover:bg-green-100"
+            variant="ghost"
+            onClick={() => window.location.href = '/'}
         >
-     {title}
-        </button>
+            Voltar para o início
+        </Button>
     );
 }

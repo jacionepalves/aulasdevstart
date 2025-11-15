@@ -1,6 +1,6 @@
-import Header from "../commons/Header";
+import Header from "../commons/header-tabs";
 import { assets } from "@/assets/assets";
-import ButtonCustom from "../commons/ButtonCustom";
+import ButtonCustom from "../commons/button-custom";
 
 export default function Hero(){
     return(

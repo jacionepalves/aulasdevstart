@@ -1,10 +1,17 @@
 import { assets } from "@/assets/assets";
 import { ShoppingCart, User } from "lucide-react";
-import ButtonCustom from "./ButtonCustom";
+import ButtonCustom from "./button-custom";
 
-export default function Header(){
+type HeaderProps = {
+    bgcolor?: string;
+};
+
+export default function Header({bgcolor}: HeaderProps) {
+    // Function implementation here
+
     return (
-        <header className="flex flex-row justify-between items-center w-full container py-6 absolute top-0">
+        <header className="flex flex-row justify-between items-center w-full container py-6 absolute top-0" style={
+            {backgroundColor: bgcolor}}>
             <div className="flex flex-row items-center space-x-2">
               <img 
               src={assets.logo} 
@@ -32,15 +39,15 @@ export default function Header(){
                 </ul>
             </nav>
             <div className="flex flex-row items-center space-x-8">
-                <div className="text-white flex flex-col items-center text-xs tracking-[1px] gap-1">
+                <button className="text-white flex flex-col items-center text-xs tracking-[1px] gap-1">
                     < User className="w-8 h-8 text-white"/>
-                    <span className="text-gray-300">
-                        Minha Conta</span>              
-                </div>
-                <div className="text-white flex flex-col items-center text-xs tracking-[1px] gap-1">
+                    <a href="/Signin"className="text-gray-300">
+                        Minha Conta</a>              
+                </button>
+                <button className="text-white flex flex-col items-center text-xs tracking-[1px] gap-1">
                     <ShoppingCart className="w-8 h-8 text-white"/>
-                    <span className="text-gray-300">Meu carrinho</span>          
-                </div>
+                    <a href="/mycart" className="text-gray-300">Meu carrinho</a>          
+                </button>
 
                 <ButtonCustom 
                 title="Signup" 
