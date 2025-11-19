@@ -1,70 +1,67 @@
 import { assets } from "@/assets/assets";
 import { ShoppingCart, User } from "lucide-react";
 import ButtonCustom from "./button-custom";
+import { useNavigate } from "react-router-dom";
 
 export default function Header() {
-    function handleNavigateToLogin() {
-        window.location.href = "/signin";
-    }
+  const navigate = useNavigate();
 
-    function handleNavigatetoCart() {
-        window.location.href = "/meucarrinho";
-    }
+  function handleNavigateToLogin() {
+    navigate("/signin");
+  }
 
-    return (
-        <header className="flex flex-row justify-between items-center container py-6 px-[5%] absolute top-0">
-            <div className="flex flex-row items-center space-x-2">
-                <img
-                    src={assets.logo}
-                    alt="imagem do logotipo"
-                    className="w-14 h-14 rounded-full"
-                />
+  function handleNavigatetoCart() {
+    navigate("/meucarrinho");
+  }
 
-                <h1 className="text-white text-2xl font-semibold">
-                    NextBite Food
-                </h1>
-            </div>
+  return (
+    <header className="flex flex-row justify-between items-center container py-6 px-[5%] absolute top-0">
+      <div className="flex flex-row items-center space-x-2">
+        <img
+          src={assets.logo}
+          alt="imagem do logotipo"
+          className="w-14 h-14 rounded-full"
+        />
 
-            <nav>
-                <ul className="flex flex-row items-center space-x-6 text-xl tracking-[1px]">
-                    <li className="text-white">
-                        <a href="#hero">Home</a>
-                    </li>
-                    <li className="text-white">
-                        <a href="#about">Sobre nos</a>
-                    </li>
-                    <li className="text-white">
-                        <a href="#menu">Menu</a>
-                    </li>
-                    <li className="text-white">
-                        <a href="#contact">Contato</a>
-                    </li>
-                </ul>
-            </nav>
+        <h1 className="text-white text-2xl font-semibold">NextBite Food</h1>
+      </div>
 
-            <div className="flex flex-row items-center space-x-8">
-                <button
-                    onClick={handleNavigateToLogin}
-                    className="text-white flex flex-col items-center text-xs tracking-[1px] gap-1"
-                >
-                    <User className="w-7 h-7 text-white" />
-                    <span className="text-gray-300">Minha conta</span>
-                </button>
+      <nav>
+        <ul className="flex flex-row items-center space-x-6 text-xl tracking-[1px]">
+          <li className="text-white">
+            <a href="#hero">Home</a>
+          </li>
+          <li className="text-white">
+            <a href="#about">Sobre nos</a>
+          </li>
+          <li className="text-white">
+            <a href="#menu">Menu</a>
+          </li>
+          <li className="text-white">
+            <a href="#contact">Contato</a>
+          </li>
+        </ul>
+      </nav>
 
-                <button
-                    onClick={handleNavigatetoCart}
-                    className="text-white flex flex-col items-center text-xs tracking-[1px] gap-1"
-                >
-                    <ShoppingCart className="w-7 h-7 text-white" />
-                    <span className="text-gray-300">Meu carrinho</span>
-                </button>
+      <div className="flex flex-row items-center space-x-8">
+        <button
+          onClick={handleNavigateToLogin}
+          className="text-white flex flex-col items-center text-xs tracking-[1px] gap-1"
+        >
+          <User className="w-7 h-7 text-white" />
+          <span className="text-gray-300">Minha conta</span>
+        </button>
 
-                <ButtonCustom
-                    title="Cadastre-se"
-                    variant="ghost"
-                    border="border border-green-600 rounded-full"
-                />
-            </div>
-        </header>
-    );
+        <button
+          onClick={handleNavigatetoCart}
+          className="text-white flex flex-col items-center text-xs tracking-[1px] gap-1"
+        >
+          <ShoppingCart className="w-7 h-7 text-white" />
+          <span className="text-gray-300">Meu carrinho</span>
+        </button>
+
+        <ButtonCustom title="Cadastre-se" variant="ghost" />
+      </div>
+    </header>
+  );
 }
