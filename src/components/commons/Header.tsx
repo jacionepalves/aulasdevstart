@@ -8,7 +8,7 @@ export default function Header() {
     }
 
     function handleNavigatetoCart() {
-        window.location.href = "/mycart";
+        window.location.href = "/meucarrinho";
     }
 
     return (
@@ -28,7 +28,7 @@ export default function Header() {
             <nav>
                 <ul className="flex flex-row items-center space-x-6 text-xl tracking-[1px]">
                     <li className="text-white">
-                        <a href="#Hero">Home</a>
+                        <a href="#hero">Home</a>
                     </li>
                     <li className="text-white">
                         <a href="#about">Sobre nos</a>
@@ -62,7 +62,7 @@ export default function Header() {
                 <ButtonCustom
                     title="Cadastre-se"
                     variant="ghost"
-                    border=" border border-2 border-green-600 rounded-full"
+                    border="border border-green-600 rounded-full"
                 />
             </div>
         </header>
